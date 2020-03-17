@@ -1,0 +1,17 @@
+{
+  "name": "novabot",
+  "version": "1.0.0",
+  "description": "An all purpose bot for discord",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rahulmohan126",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.0.2",
+    "node-opus": "^0.3.3",
+    "simple-youtube-api": "^5.2.1",
+    "ytdl-core": "^2.0.0"
+  }
+}
