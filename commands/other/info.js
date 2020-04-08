@@ -1,6 +1,6 @@
 module.exports = {
 	main: function(bot, msg) {
-		let description = `[Add the bot to your server](https://discordapp.com/api/oauth2/authorize?client_id=537650534233145344&permissions=2146958807&scope=bot)
+		let description = `[Add the bot to your server](https://discordapp.com/api/oauth2/authorize?client_id=${bot.ID}&permissions=2146958807&scope=bot)
 	[Source Link](https://github.com/rahulmohan126)`
 		bot.sendNotification(description, 'info', msg);
 	},

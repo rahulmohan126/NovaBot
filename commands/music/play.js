@@ -65,7 +65,7 @@ Please provide a value to select one of the search results ranging from 1-10.
 							});
 						}
 						catch (err) {
-							//return bot.sendNotification('No or invalid value entered, cancelling video selection.', 'error', msg);
+							return bot.sendNotification('No or invalid value entered, cancelling video selection.', 'error', msg);
 						}
 
 						var index = 1;
