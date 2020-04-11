@@ -147,7 +147,7 @@ module.exports = {
 		getInput = async function(msg) {
 			try {
 				var response = await msg.channel.awaitMessages(msg2 => ((msg2.content == 'stand') || (msg2.content == 'hit')) && msg2.author.id == msg.author.id, {
-					maxMatches: 1,
+					max: 1,
 					time: 10000,
 					errors: ['time']
 				});
@@ -161,9 +161,11 @@ module.exports = {
 		const user = bot.getUser(msg);
 		
 		const bet = parseInt(msg.content);
-		if (isNaN(bet) || bet > user.cash) {
-			msg.channel.send('That is not a valid amount.');
-			return;
+		if (isNaN(bet) || bet <= 0) {
+			return bot.sendNotification('That is not a valid amount.', 'error', msg);
+		}
+		else if (user.cash > bet) {
+			return bot.sendNotification('You don\' have enough cash to bet that amount.', 'error', msg);
 		}
 
 		user.cash -= bet;

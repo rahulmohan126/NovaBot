@@ -32,8 +32,6 @@ const Types = {
 	USER_MENTION: {
 		name: 'user mention',
 		convert: function(raw, msg) {
-			console.log(raw);
-			console.log(msg.mentions.users);
 			if (raw.startsWith('<@!') && raw.endsWith('>')) {
 				return(msg.mentions.users.get(raw.slice(3, -1)));
 			}

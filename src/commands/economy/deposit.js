@@ -4,14 +4,14 @@ module.exports = {
 		const user = bot.getUser(msg);
 		const amount = msg.content === 'all' ? user.cash : parseInt(msg);
 
-		if (amount <= user.cash) {
+		if (amount <= user.cash && amount > 0) {
 			user.cash -= amount;
 			user.bank += amount;
 			bot.sendNotification(`Successfully deposited ${currency}${amount}`, 'success', msg);
 			bot.saveGuild(msg.guild.id);
 		}
 		else {
-			bot.sendNotification('Please enter a valid amount (that does not exceed your current cash balance).', 'error', msg);
+			bot.sendNotification('Please enter a valid amount (that does not exceed your current cash balance and is greater than 0).', 'error', msg);
 		}
 		
 	},

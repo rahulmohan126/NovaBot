@@ -16,26 +16,34 @@ module.exports = {
 			return;
 		}
 
-		var type = parser.get('type');
-		var role;
+		try {
+			var type = parser.get('type');
+			var role;
 
-		if (guild[type] !== 0) {
-			role = msg.guild.roles.cache.get(guild[type]);
+			console.log(type);
+			console.log(guild[type]);
 
-			let oldRoles = role.members.array();
+			if (guild[type] !== 0) {
+				role = msg.guild.roles.cache.get(guild[type]);
 
-			for (let id in oldRoles) {
-				bot.getMember(oldRoles[id])[type] = false;
+				let oldRoles = role.members.array();
+
+				for (let id in oldRoles) {
+					bot.getMember(oldRoles[id])[type] = false;
+				}
+			}
+
+			role = parser.get('role');
+			guild[type] = role.id;
+
+			let newRoles = role.members.array();
+
+			for (let id in newRoles) {
+				bot.getMember(newRoles[id])[type] = true;
 			}
 		}
-
-		role = parser.get('role');
-		guild[type] = role.id;
-
-		let newRoles = role.members.array();
-
-		for (let id in newRoles) {
-			bot.getMember(newRoles[id])[type] = true;
+		catch {
+			bot.sendNotification('Args error: Check arguements and try again.', 'error', msg);
 		}
 
 		bot.saveGuild(msg.guild.id);

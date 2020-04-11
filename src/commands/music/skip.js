@@ -1,5 +1,5 @@
 module.exports = {
-	main: function(bot, msg) {
+	main: function (bot, msg) {
 		const serverQueue = bot.queue.get(msg.guild.id);
 
 		if (!msg.member.voice.channel) {
@@ -14,5 +14,6 @@ module.exports = {
 		}
 	},
 	help: 'Skips the current song to the next one in the queue.',
-	usage: 'skip'
+	usage: 'skip',
+	module: __dirname.split(require('path').sep).pop()
 };

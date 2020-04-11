@@ -1,7 +1,7 @@
 module.exports = {
-	main: function(bot, msg) {
+	main: function (bot, msg) {
 		const serverQueue = bot.queue.get(msg.guild.id);
-		
+
 		if (!serverQueue) {
 			bot.sendNotification('There is nothing playing.', 'error', msg);
 		}
@@ -15,5 +15,6 @@ module.exports = {
 		}
 	},
 	help: 'Pause the current song.',
-	usage: 'pause'
+	usage: 'pause',
+	module: __dirname.split(require('path').sep).pop()
 };

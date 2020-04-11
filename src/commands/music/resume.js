@@ -1,5 +1,5 @@
 module.exports = {
-	main: function(bot, msg) {
+	main: function (bot, msg) {
 		const serverQueue = bot.queue.get(msg.guild.id);
 
 		if (!serverQueue) {
@@ -15,5 +15,6 @@ module.exports = {
 		}
 	},
 	help: 'Resumes the current song.',
-	usage: 'resume'
+	usage: 'resume',
+	module: __dirname.split(require('path').sep).pop()
 };

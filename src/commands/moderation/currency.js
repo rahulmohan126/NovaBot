@@ -16,5 +16,6 @@ module.exports = {
 		}
 	},
 	help: 'See/set the currency for the server.',
-	usage: 'currency (new currency)'
+	usage: 'currency (new currency)',
+	module: __dirname.split(require('path').sep).pop()
 };

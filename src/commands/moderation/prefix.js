@@ -4,17 +4,18 @@ module.exports = {
 		const arg = msg.content.split(' ')[0].trim();
 		
 		if (arg === '') {
-			bot.sendNotification(`The current prefix is: ${bot.getGuild(msg.guild.id).prefix}`, 'info', msg);
+			bot.sendNotification(`The current prefix is: "${bot.getGuild(msg.guild.id).prefix}"`, 'info', msg);
 		}
 		else if (msg.author.id === msg.guild.ownerID) {
 			bot.getGuild(msg.guild.id).prefix = arg;
 			bot.saveGuild(msg.guild.id);
-			bot.sendNotification(`The new prefix is ${arg}.`, 'success', msg);
+			bot.sendNotification(`The new prefix is "${arg}"`, 'success', msg);
 		}
 		else {
 			bot.sendNotification('Only the guild owner can change the prefix.', 'error', msg);
 		}
 	},
 	help: 'See/set the prefix for the server.',
-	usage: 'prefix (new prefix)'
+	usage: 'prefix (new prefix)',
+	module: __dirname.split(require('path').sep).pop()
 };

@@ -1,5 +1,5 @@
 module.exports = {
-	main: function(bot, msg) {
+	main: function (bot, msg) {
 		const serverQueue = bot.queue.get(msg.guild.id);
 
 		if (!msg.member.voice.channel) {
@@ -9,11 +9,14 @@ module.exports = {
 			bot.sendNotification('There is no music playing at the moment...', 'error', msg);
 		}
 		else {
-			serverQueue.connection.dispatcher.end('Music stopped!');
+			serverQueue.connection.dispatcher.end();
+			serverQueue.connection.disconnect();
 			bot.queue.delete(msg.guild.id);
+
 			bot.sendNotification('⏹ Music stopped!', 'success', msg);
 		}
 	},
 	help: 'Stop the current song and clears song queue',
-	usage: 'stop'
+	usage: 'stop',
+	module: __dirname.split(require('path').sep).pop()
 };

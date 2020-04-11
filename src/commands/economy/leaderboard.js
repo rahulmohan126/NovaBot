@@ -1,21 +1,20 @@
 module.exports = {
-	main: async function(bot, msg) {
+	main: async function (bot, msg) {
 		const guild = bot.getGuild(msg.guild.id);
 		const user = bot.getUser(msg);
-		const sortedUsers = Object.keys(guild.users).map(function(id) {
-			return [id, guild.users[id].netWorth];
-		}).sort((a, b) => b[1] - a[1]);
+		const sortedUsers = msg.guild.members.cache.keyArray().flatMap(id =>
+			id === bot.ID ? [] : [[id, guild.users[id].netWorth]]).sort((a, b) => b[1] - a[1]);
 
 		let msgDescription = '';
 		let userIndex = -1;
-		
+
 		for (var i = 0; i < sortedUsers.length; i++) {
 			if (sortedUsers[i][0] === msg.author.id) {
 				userIndex = i;
 				break;
 			}
 		}
-		
+
 		let userInBoard = false;
 
 		for (var i = 0; i < 5 && i < sortedUsers.length; i++) {
@@ -24,8 +23,8 @@ module.exports = {
 			let userID, netWorth;
 			[userID, netWorth] = sortedUsers[i];
 
-			let x = await msg.guild.fetchMember(await bot.fetchUser(userID));
-			msgDescription += `${i + 1}. ${x.displayName}: ${guild.economy.currency}${netWorth}\n`;
+			let x = await msg.guild.member(userID);
+			msgDescription += `${i + 1}. ${x.displayName}: ${netWorth < 0 ? '-' : ''}${guild.economy.currency}${Math.abs(netWorth)}\n`;
 		}
 
 		if (!userInBoard) {

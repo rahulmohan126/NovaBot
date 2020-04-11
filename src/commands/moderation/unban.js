@@ -18,7 +18,7 @@ module.exports = {
 				return ban.username === name;
 			}).first();
 
-			console.log(msg.guild.members.unban(target, parser.get('reason')));
+			// console.log(msg.guild.members.unban(target, parser.get('reason')));
 
             bot.sendNotification('User unbanned', 'success', msg);
 		}
