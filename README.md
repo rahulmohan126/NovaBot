@@ -77,25 +77,9 @@ node path/to/bot.js
 ````
 To terminate the bot just type stop into the shell and enter.
 
-## Versions
+## Update
 
-() => optional parameter
-
-[] => required parameter
-
-### v1.1.0
-New or edited commands:
-* `loop` Loops the song.
-* `seek [time]` Skips to the desired time of the song. Example "seek 1h 5m 3s".
-* `invite` The old "info" command and been renamed and modified. Gives the invite URL so others can add the bot to there server.
-
-New or improved features:
-* Updated to [BoomBot](https://github.com/rahulmohan126/BoomBot) v1.2.0 
-
-Other:
-* Code moved to "src" folder.
-* README updated.
-* More code formatting and cleanup.
+**Project No Longer Maintained. Due to lack of differences between BoomBot and NovaBot, I will merge these two projects together sometime in the future, removing the econ module and refining the moderation module.**
 
 ## License
 
